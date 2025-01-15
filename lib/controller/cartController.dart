@@ -6,6 +6,8 @@ class Cartcontroller extends GetxController {
   double total = 0;
   bool hasCartFetched = false;
   Future<void> fetchUserCart() async {
+    print("Inside cartController================================");
+
     if (!hasCartFetched) {
       final data = await supabase
           .from('cart')

@@ -5,6 +5,8 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class Usercontroller extends GetxController {
   var user;
   Future<PostgrestList> fetchUser() async {
+    print("Inside userController================================");
+
     final data = await supabase
         .from('users')
         .select()

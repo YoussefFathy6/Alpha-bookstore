@@ -7,6 +7,7 @@ class Bookcontroller extends GetxController {
   bool hasFetchedBooks = false; // Track if books have been fetched
 
   Future<void> fetchBooks() async {
+    print("Inside bookController================================");
     if (!hasFetchedBooks) {
       // Fetch data with authors included
       final data =

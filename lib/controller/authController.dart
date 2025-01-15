@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import '../main.dart';
 
 class Authcontroller extends GetxController {
@@ -65,6 +66,35 @@ class Authcontroller extends GetxController {
       // Show user-friendly error message if necessary
       Get.snackbar('Sign-up Failed', e.toString());
     }
+  }
+
+  Future<void> loginWithGoogle() async {
+    const webClientId =
+        '263181333110-itia466sib1j87120ghnm6su1f2q0juf.apps.googleusercontent.com';
+
+    const iosClientId =
+        '263181333110-itia466sib1j87120ghnm6su1f2q0juf.apps.googleusercontent.com';
+    final GoogleSignIn googleSignIn = GoogleSignIn(
+      clientId: iosClientId,
+      serverClientId: webClientId,
+    );
+    final googleUser = await googleSignIn.signIn();
+    final googleAuth = await googleUser!.authentication;
+    final accessToken = googleAuth.accessToken;
+    final idToken = googleAuth.idToken;
+
+    if (accessToken == null) {
+      throw 'No Access Token found.';
+    }
+    if (idToken == null) {
+      throw 'No ID Token found.';
+    }
+
+    final response = await supabase.auth.signInWithIdToken(
+      provider: OAuthProvider.google,
+      idToken: idToken,
+      accessToken: accessToken,
+    );
   }
 
   Future<void> logout() async {

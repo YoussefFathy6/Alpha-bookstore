@@ -87,7 +87,6 @@ class _HomescreenState extends State<Homescreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GetBuilder<Usercontroller>(
-                  init: Usercontroller(),
                   builder: (controller) => Container(
                         padding: const EdgeInsets.only(bottom: 15),
                         decoration: const BoxDecoration(

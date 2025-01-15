@@ -8,6 +8,8 @@ class Librarycontroller extends GetxController {
   List get cart => Get.find<Cartcontroller>().cart;
   bool hasLibraryFetched = false;
   Future<void> fetchUserLibrary() async {
+    print("Inside libraryController================================");
+
     if (!hasLibraryFetched) {
       final data = await supabase.from('library').select("""
       *,

@@ -56,6 +56,16 @@ class _SignupscreenState extends State<Loginscreen> {
                       controller.login(email.text, password.text);
                     }),
               ),
+              Text(
+                "OR",
+                textAlign: TextAlign.center,
+              ),
+              GetBuilder<Authcontroller>(
+                  builder: (contorller) => OutlinedButton(
+                      onPressed: () {
+                        contorller.loginWithGoogle();
+                      },
+                      child: Text("data"))),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
